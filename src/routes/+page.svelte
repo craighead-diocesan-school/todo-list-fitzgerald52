@@ -13,7 +13,10 @@
     localStorage.todos = JSON.stringify(tasks)
   }
   function loadTasks() {
-    tasks = JSON.parse(localStorage.todos)
+    let proceed = confirm('are you sure?')
+    if (proceed) {
+      tasks = JSON.parse(localStorage.todos)
+    }
   }
 </script>
 
@@ -21,6 +24,7 @@
 <button on:click={addTask}>📝 Add</button>
 <button on:click={saveTasks}>💾 Save</button>
 <button on:click={loadTasks}> 📡 Load</button>
+
 {#each tasks as task, index}
   <div class="task">
     <input bind:value={tasks[index]} />
